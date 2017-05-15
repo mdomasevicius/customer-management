@@ -26,17 +26,32 @@ class CustomerRest {
         CustomerCollection stripeResponse = Customer.list(params);
         List<CustomerResource> customers = stripeResponse.getData()
             .stream()
-            .map(c -> {
-                CustomerResource customer = new CustomerResource();
-                customer.setId(customer.getId());
-                customer.setEmail(c.getEmail());
-                customer.setFullName(c.getMetadata().get("fullName"));
-                customer.setCity(c.getMetadata().get("city"));
-                customer.setStreet(c.getMetadata().get("street"));
-                customer.setHouseNumber(c.getMetadata().get("houseNumber"));
-                customer.setZipCode(c.getMetadata().get("zipCode"));
-                return customer;
-            }).collect(Collectors.toList());
+            .map(c -> toResource(c))
+            .collect(Collectors.toList());
         return ok(new CollectionResource<>(customers));
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<CustomerResource> findOne(@PathVariable String id) throws CardException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+        Customer customer;
+        try {
+            customer = Customer.retrieve(id);
+        } catch (Throwable t) {
+            throw new NotFoundException();
+        }
+        CustomerResource customerResource = toResource(customer);
+        return ok(customerResource);
+    }
+
+    private CustomerResource toResource(Customer c) {
+        CustomerResource resource = new CustomerResource();
+        resource.setId(c.getId());
+        resource.setEmail(c.getEmail());
+        resource.setFullName(c.getMetadata().get("fullName"));
+        resource.setCity(c.getMetadata().get("city"));
+        resource.setStreet(c.getMetadata().get("street"));
+        resource.setHouseNumber(c.getMetadata().get("houseNumber"));
+        resource.setZipCode(c.getMetadata().get("zipCode"));
+        return resource;
     }
 }
