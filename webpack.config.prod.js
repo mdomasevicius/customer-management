@@ -81,7 +81,9 @@ export default {
       {test: /\.svg(\?v=\d+.\d+.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml&name=[name].[ext]'},
       {test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]'},
       {test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'},
-      {test: /(\.css|\.scss|\.sass)$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader!sass-loader?sourceMap')}
+      {test: /(\.css|\.scss|\.sass)$/, loader: ExtractTextPlugin.extract('css-loader?sourceMap!postcss-loader!sass-loader?sourceMap')},
+      {test: /\.less$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', `less-loader?{"sourceMap":true`]},
+      {test: /\.tsx?$/, loaders: [require.resolve('babel-loader'), require.resolve('ts-loader')]}
     ]
   }
 };
