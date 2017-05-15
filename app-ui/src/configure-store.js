@@ -4,6 +4,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './root-reducer';
 import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
+import {routerMiddleware} from 'react-router-redux';
+import {browserHistory} from 'react-router';
 
 function configureStoreProd(initialState) {
     const middlewares = [
@@ -16,7 +18,8 @@ function configureStoreProd(initialState) {
     ];
 
     return createStore(rootReducer, initialState, compose(
-        applyMiddleware(...middlewares)
+        applyMiddleware(...middlewares),
+        routerMiddleware(browserHistory)
         )
     );
 }
@@ -27,6 +30,7 @@ function configureStoreDev(initialState) {
 
         // Redux middleware that spits an error on you when you try to mutate your state either inside a dispatch or between dispatches.
         reduxImmutableStateInvariant(),
+        routerMiddleware(browserHistory),
         promise(),
         logger,
         // thunk middleware can also accept an extra argument to be passed to each thunk action
