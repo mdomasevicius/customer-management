@@ -5,7 +5,11 @@ import {actions} from "./customer-actions";
 import {Form, Input, notification, Button, Spin} from 'antd';
 const FormItem = Form.Item;
 
-const propTypes = {};
+const propTypes = {
+    actions: PropTypes.objectOf(PropTypes.func),
+    customerState: PropTypes.object,
+    form: PropTypes.object
+};
 
 class CustomerRegisterPage extends React.Component {
 
@@ -19,7 +23,7 @@ class CustomerRegisterPage extends React.Component {
             message: 'Registration Failed',
             description: 'Unable to register customer.',
         });
-    };
+    }
 
     register(e) {
         e.preventDefault();
@@ -39,7 +43,7 @@ class CustomerRegisterPage extends React.Component {
     render() {
         const {getFieldDecorator} = this.props.form;
         const {registeringCustomer} = this.props.customerState;
-        console.log(registeringCustomer);
+
         return (
             <div>
                 <Spin spinning={registeringCustomer}>

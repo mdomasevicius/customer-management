@@ -18,6 +18,10 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 class CustomerRest {
 
+    public CustomerRest() {
+        Stripe.apiKey = "sk_test_QXvSaCkPZb6AmjCXPpWeO2ZH";
+    }
+
     @GetMapping
     ResponseEntity<CollectionResource<CustomerResource>> list() throws CardException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
         HashMap<String, Object> params = new HashMap<>();

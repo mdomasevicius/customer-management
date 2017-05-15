@@ -15,7 +15,7 @@ class CustomerList extends React.Component {
     }
 
     handleRowClick(record) {
-        browserHistory.push(`/${record.id}`)
+        browserHistory.push(`/${record.id}`);
     }
 
     render() {

@@ -8,7 +8,10 @@ import CustomerDetailCard from "./CustomerDetailCard";
 
 const propTypes = {
     actions: PropTypes.object,
-    customerState: PropTypes.object
+    customerState: PropTypes.object,
+    params: PropTypes.shape({
+        customerId: PropTypes.string,
+    })
 };
 
 class CustomerDetailPage extends React.Component {

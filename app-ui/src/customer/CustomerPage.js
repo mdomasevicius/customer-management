@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actions} from './customer-actions';
 import CustomerList from './CustomerList';
-import CustomerRegister from './CustomerRegisterPage';
 
 const propTypes = {
-    actions: PropTypes.object
+    actions: PropTypes.object,
+    customerState: PropTypes.object
 };
 
 class CustomerPage extends React.Component {
@@ -16,7 +16,6 @@ class CustomerPage extends React.Component {
     }
 
     render() {
-        console.log(this);
         const {customers,
             fetchingCustomers,
             customerDetailModalVisible} = this.props.customerState;

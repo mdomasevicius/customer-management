@@ -2,7 +2,14 @@ import React, {PropTypes} from "react";
 import {Col, Row} from "antd";
 
 const propTypes = {
-    customer: PropTypes.object
+    customer: PropTypes.shape({
+        fullName: PropTypes.string,
+        email: PropTypes.string,
+        city: PropTypes.string,
+        street: PropTypes.string,
+        houseNumber: PropTypes.string,
+        zipCode: PropTypes.string
+    })
 };
 
 class CustomerDetailCard extends React.Component {
@@ -59,4 +66,5 @@ class CustomerDetailCard extends React.Component {
     }
 }
 
-export default CustomerDetailCard
+CustomerDetailCard.propTypes = propTypes;
+export default CustomerDetailCard;
