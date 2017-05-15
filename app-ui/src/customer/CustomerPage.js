@@ -5,8 +5,13 @@ import {actions} from './customer-actions';
 import CustomerList from './CustomerList';
 
 const propTypes = {
-    actions: PropTypes.object,
-    customerState: PropTypes.object
+    actions: PropTypes.shape({
+        fetchCustomers: PropTypes.func
+    }),
+    customerState: PropTypes.shape({
+        fetchingCustomers: PropTypes.bool,
+        customers: PropTypes.array,
+    })
 };
 
 class CustomerPage extends React.Component {
@@ -16,19 +21,18 @@ class CustomerPage extends React.Component {
     }
 
     render() {
-        const {customers,
-            fetchingCustomers,
-            customerDetailModalVisible} = this.props.customerState;
+        const {
+            customers,
+            fetchingCustomers
+        } = this.props.customerState;
 
         return (
             <div>
                 <div>
-                    {/*<CustomerRegister/>*/}
                     <CustomerList
                         data={customers}
                         loading={fetchingCustomers}
-                        customerDetailModalVisible={customerDetailModalVisible}
-                        singleCustomerSelect={this.props.actions.fetchSingleCustomerAndToggleDetailModal}/>
+                        />
                 </div>
             </div>
         );

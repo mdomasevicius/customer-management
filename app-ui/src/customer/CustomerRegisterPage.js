@@ -6,9 +6,14 @@ import {Form, Input, notification, Button, Spin} from 'antd';
 const FormItem = Form.Item;
 
 const propTypes = {
-    actions: PropTypes.objectOf(PropTypes.func),
-    customerState: PropTypes.object,
-    form: PropTypes.object
+    actions: PropTypes.shape({
+        registerCustomerMaybeNavigateToList: PropTypes.func
+    }),
+    customerState: PropTypes.shape({
+        registeringCustomer: PropTypes.bool,
+        registeringSuccess: PropTypes.bool
+    }),
+    form: PropTypes.object //from antd
 };
 
 class CustomerRegisterPage extends React.Component {

@@ -7,8 +7,12 @@ import {Col, Row} from "antd";
 import CustomerDetailCard from "./CustomerDetailCard";
 
 const propTypes = {
-    actions: PropTypes.object,
-    customerState: PropTypes.object,
+    actions: PropTypes.shape({
+        fetchSingleCustomer: PropTypes.func
+    }),
+    customerState: PropTypes.shape({
+        customer: PropTypes.object
+    }),
     params: PropTypes.shape({
         customerId: PropTypes.string,
     })

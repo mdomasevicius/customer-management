@@ -3,7 +3,14 @@ import {Table} from 'antd';
 import {browserHistory } from 'react-router';
 
 const propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.arrayOf(PropTypes.shape({
+        fullName: PropTypes.string,
+        email: PropTypes.string,
+        city: PropTypes.string,
+        street: PropTypes.string,
+        houseNumber: PropTypes.string,
+        zipCode: PropTypes.string
+    })),
     loading: PropTypes.bool
 };
 
