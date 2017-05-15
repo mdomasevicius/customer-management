@@ -1,22 +1,24 @@
 import {types} from './customer-actions';
 const defaultState = {
-    fetching: false
+    fetchingCustomers: false,
+    customers: []
 };
 
 export default function reduce(state = defaultState, action) {
-    switch (action) {
+    switch (action.type) {
         case types.FETCH_CUSTOMERS + '_PENDING':
             return {...state,
-                fetching: true
+                fetchingCustomers: true
             };
         case types.FETCH_CUSTOMERS + '_FULFILLED':
             return {
                 ...state,
-                fetching: false
+                customers: action.payload.data.entries,
+                fetchingCustomers: false
             };
         case types.FETCH_CUSTOMERS + '_REJECTED':
             return {...state,
-                fetching: false
+                fetchingCustomers: false
             };
         default:
             return state;

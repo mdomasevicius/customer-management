@@ -16,17 +16,14 @@ class CustomerPage extends React.Component {
     }
 
     render() {
-
-        const mockList = [
-            {id: 1, firstName: 'Mike', lastName: 'Keen'},
-            {id: 2, firstName: 'Jacob', lastName: 'Owen'}
-        ];
+        console.log(this);
+        const {customers, fetchingCustomers} = this.props.customerState;
 
         return (
             <div>
                 <div>
-                    <CustomerRegister/>
-                    {/*<CustomerList data={mockList}/>*/}
+                    {/*<CustomerRegister/>*/}
+                    <CustomerList data={customers} loading={fetchingCustomers}/>
                 </div>
             </div>
         );
@@ -35,9 +32,12 @@ class CustomerPage extends React.Component {
 
 CustomerPage.propTypes = propTypes;
 
-const mapStateToProps = (state) => ({
-    customerReducer: state.customerReducer
-});
+const mapStateToProps = (state) => {
+    console.log('wtf', state);
+    return {
+        customerState: state.customerReducer
+    }
+};
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)

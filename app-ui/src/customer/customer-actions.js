@@ -8,7 +8,7 @@ export const types = {
 const fetchCustomers = () => ({
     type: types.FETCH_CUSTOMERS,
     payload: {
-        // promise: stripe.customers.list({limit: 100})
+        promise: axios.get('/api/customers')
     }
 });
 
