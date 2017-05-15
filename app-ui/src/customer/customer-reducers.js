@@ -5,7 +5,10 @@ const defaultState = {
 
     fetchingSingleCustomer: false,
     customer: {},
-}
+
+    registeringCustomer: false,
+    registeringSuccess: false
+};
 
 export default function reduce(state = defaultState, action) {
     switch (action.type) {
@@ -37,6 +40,23 @@ export default function reduce(state = defaultState, action) {
         case types.FETCH_SINGLE_CUSTOMER + '_REJECTED':
             return {...state,
                 fetchingSingleCustomer: false
+            };
+
+        case types.REGISTER_CUSTOMER + '_PENDING':
+            return {...state,
+                registeringCustomer: true,
+                registeringSuccess: false
+            };
+        case types.REGISTER_CUSTOMER + '_FULFILLED':
+            return {
+                ...state,
+                registeringCustomer: false,
+                registeringSuccess: true
+            };
+        case types.REGISTER_CUSTOMER + '_REJECTED':
+            return {...state,
+                registeringCustomer: false,
+                registeringSuccess: false
             };
 
         default:

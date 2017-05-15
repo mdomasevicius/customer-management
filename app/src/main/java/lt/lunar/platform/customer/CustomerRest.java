@@ -7,13 +7,12 @@ import com.stripe.model.CustomerCollection;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.springframework.http.ResponseEntity.*;
-
+import static org.springframework.http.ResponseEntity.ok;
 
 @RequestMapping("/api/customers")
 @RestController
@@ -32,7 +31,7 @@ class CustomerRest {
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<CustomerResource> findOne(@PathVariable String id) throws CardException, APIException, AuthenticationException, InvalidRequestException, APIConnectionException {
+    ResponseEntity<CustomerResource> findOne(@PathVariable String id) {
         Customer customer;
         try {
             customer = Customer.retrieve(id);
@@ -43,15 +42,38 @@ class CustomerRest {
         return ok(customerResource);
     }
 
-    private CustomerResource toResource(Customer c) {
+    @PostMapping
+    ResponseEntity create(@RequestBody CustomerResource request) {
+        Map<String, Object> customerParams = new HashMap<>();
+        customerParams.put("email", request.getEmail());
+
+        Map<String, Object> customerMeta = new HashMap<>();
+        customerMeta.put("fullName", request.getFullName());
+        customerMeta.put("city", request.getCity());
+        customerMeta.put("street", request.getStreet());
+        customerMeta.put("houseNumber", request.getHouseNumber());
+        customerMeta.put("zipCode", request.getZipCode());
+        customerParams.put("metadata", customerMeta);
+
+        Customer customer;
+        try {
+            customer = Customer.create(customerParams);
+        } catch (Throwable e) {
+            throw new BadRequestException();
+        }
+
+        return ok(toResource(customer));
+    }
+
+    private CustomerResource toResource(Customer customer) {
         CustomerResource resource = new CustomerResource();
-        resource.setId(c.getId());
-        resource.setEmail(c.getEmail());
-        resource.setFullName(c.getMetadata().get("fullName"));
-        resource.setCity(c.getMetadata().get("city"));
-        resource.setStreet(c.getMetadata().get("street"));
-        resource.setHouseNumber(c.getMetadata().get("houseNumber"));
-        resource.setZipCode(c.getMetadata().get("zipCode"));
+        resource.setId(customer.getId());
+        resource.setEmail(customer.getEmail());
+        resource.setFullName(customer.getMetadata().get("fullName"));
+        resource.setCity(customer.getMetadata().get("city"));
+        resource.setStreet(customer.getMetadata().get("street"));
+        resource.setHouseNumber(customer.getMetadata().get("houseNumber"));
+        resource.setZipCode(customer.getMetadata().get("zipCode"));
         return resource;
     }
 }

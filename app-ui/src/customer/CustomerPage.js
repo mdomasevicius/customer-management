@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actions} from './customer-actions';
 import CustomerList from './CustomerList';
-import CustomerRegister from './CustomerRegister';
+import CustomerRegister from './CustomerRegisterPage';
 
 const propTypes = {
     actions: PropTypes.object
