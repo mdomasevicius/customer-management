@@ -8,7 +8,7 @@ const propTypes = {
     actions: PropTypes.shape({
         fetchCustomers: PropTypes.func
     }),
-    customerState: PropTypes.shape({
+    customerListReducer: PropTypes.shape({
         fetchingCustomers: PropTypes.bool,
         customers: PropTypes.array,
     })
@@ -24,7 +24,7 @@ class CustomerPage extends React.Component {
         const {
             customers,
             fetchingCustomers
-        } = this.props.customerState;
+        } = this.props.customerListReducer;
 
         return (
             <div>
@@ -42,7 +42,7 @@ class CustomerPage extends React.Component {
 CustomerPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-    customerState: state.customerReducer
+    customerListReducer: state.customerListReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({

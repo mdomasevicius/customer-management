@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {actions} from "./customer-actions";
+import {actions} from "./customer-detail-actions";
 import {Link} from "react-router";
 import {Col, Row} from "antd";
 import CustomerDetailCard from "./CustomerDetailCard";
@@ -10,7 +10,7 @@ const propTypes = {
     actions: PropTypes.shape({
         fetchSingleCustomer: PropTypes.func
     }),
-    customerState: PropTypes.shape({
+    customerDetailState: PropTypes.shape({
         customer: PropTypes.object
     }),
     params: PropTypes.shape({
@@ -26,7 +26,7 @@ class CustomerDetailPage extends React.Component {
     }
 
     render() {
-        const {customer} = this.props.customerState;
+        const {customer} = this.props.customerDetailState;
 
         return (
             <div>
@@ -47,7 +47,7 @@ class CustomerDetailPage extends React.Component {
 CustomerDetailPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-    customerState: state.customerReducer
+    customerDetailState: state.customerDetailReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({

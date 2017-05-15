@@ -1,7 +1,7 @@
 import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {actions} from "./customer-actions";
+import {actions} from "./customer-registration-actions";
 import {Form, Input, notification, Button, Spin} from 'antd';
 const FormItem = Form.Item;
 
@@ -9,7 +9,7 @@ const propTypes = {
     actions: PropTypes.shape({
         registerCustomerMaybeNavigateToList: PropTypes.func
     }),
-    customerState: PropTypes.shape({
+    customerRegisterState: PropTypes.shape({
         registeringCustomer: PropTypes.bool,
         registeringSuccess: PropTypes.bool
     }),
@@ -47,7 +47,7 @@ class CustomerRegisterPage extends React.Component {
 
     render() {
         const {getFieldDecorator} = this.props.form;
-        const {registeringCustomer} = this.props.customerState;
+        const {registeringCustomer} = this.props.customerRegisterState;
 
         return (
             <div>
@@ -135,7 +135,7 @@ class CustomerRegisterPage extends React.Component {
 CustomerRegisterPage.propTypes = propTypes;
 
 const mapStateToProps = (state) => ({
-    customerState: state.customerReducer
+    customerRegisterState: state.customerRegisterReducer
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,12 +2,6 @@ import {types} from './customer-actions';
 const defaultState = {
     fetchingCustomers: false,
     customers: [],
-
-    fetchingSingleCustomer: false,
-    customer: {},
-
-    registeringCustomer: false,
-    registeringSuccess: false
 };
 
 export default function reduce(state = defaultState, action) {
