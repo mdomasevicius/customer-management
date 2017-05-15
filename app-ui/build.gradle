@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+sourceSets.main {
+    resources {
+        srcDir 'dist'
+    }
+}
+
+boolean isWindows = System.getProperty('os.name').toLowerCase(Locale.ENGLISH) ==~ /win.*/
+def npmExec = isWindows ? 'npm.cmd' : 'npm'
+
+task npmInit(type: Exec) {
+    description = 'Install NPM dependencies'
+    commandLine = [npmExec, 'install']
+    inputs.files 'package.json'
+    outputs.dir 'node_modules'
+}
+
+task npmBuild(dependsOn: npmInit, type: Exec) {
+    description = 'NPM build'
+    commandLine = [npmExec, 'run', 'build']
+    inputs.dir 'src'
+    outputs.dir 'dist'
+}
+
+clean.doLast {
+    file("${projectDir}/dist").deleteDir()
+}
+
+processResources.dependsOn npmBuild
