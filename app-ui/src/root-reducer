@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
+import customerReducer from './customer/customer-reducers';
 
 const rootReducer = combineReducers({
-    routing: routerReducer
+    routing: routerReducer,
+    customerState: customerReducer
 });
 
 export default rootReducer;

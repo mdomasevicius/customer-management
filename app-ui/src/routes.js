@@ -3,11 +3,13 @@ import {IndexRoute, Route} from 'react-router';
 
 import App from './app/App';
 import HomePage from './app/HomePage';
+import CustomerPage from './customer/CustomerPage';
 import NotFoundPage from './app/NotFoundPage';
 
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={HomePage}/>
+        <Route path="/customers" component={CustomerPage}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );
