@@ -39,7 +39,8 @@ class CustomerRegisterPage extends React.Component {
                     email: values.email,
                     city: values.city,
                     street: values.street,
-                    zipCode: values.zipCode
+                    zipCode: values.zipCode,
+                    houseNumber: values.houseNumber
                 }, this.openErrorNotificationWithIcon);
             }
         });

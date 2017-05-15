@@ -4,6 +4,7 @@ import com.stripe.Stripe;
 import com.stripe.exception.*;
 import com.stripe.model.Customer;
 import com.stripe.model.CustomerCollection;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,8 @@ import static org.springframework.http.ResponseEntity.ok;
 @RestController
 class CustomerRest {
 
-    public CustomerRest() {
-        Stripe.apiKey = "sk_test_QXvSaCkPZb6AmjCXPpWeO2ZH";
+    public CustomerRest(@Value("${apis.stripe}") String stripeApiKey) {
+        Stripe.apiKey = stripeApiKey;
     }
 
     @GetMapping
