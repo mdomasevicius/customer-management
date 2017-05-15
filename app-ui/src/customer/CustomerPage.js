@@ -17,13 +17,19 @@ class CustomerPage extends React.Component {
 
     render() {
         console.log(this);
-        const {customers, fetchingCustomers} = this.props.customerState;
+        const {customers,
+            fetchingCustomers,
+            customerDetailModalVisible} = this.props.customerState;
 
         return (
             <div>
                 <div>
                     {/*<CustomerRegister/>*/}
-                    <CustomerList data={customers} loading={fetchingCustomers}/>
+                    <CustomerList
+                        data={customers}
+                        loading={fetchingCustomers}
+                        customerDetailModalVisible={customerDetailModalVisible}
+                        singleCustomerSelect={this.props.actions.fetchSingleCustomerAndToggleDetailModal}/>
                 </div>
             </div>
         );
@@ -32,12 +38,9 @@ class CustomerPage extends React.Component {
 
 CustomerPage.propTypes = propTypes;
 
-const mapStateToProps = (state) => {
-    console.log('wtf', state);
-    return {
-        customerState: state.customerReducer
-    }
-};
+const mapStateToProps = (state) => ({
+    customerState: state.customerReducer
+});
 
 const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(actions, dispatch)
