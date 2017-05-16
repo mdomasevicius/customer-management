@@ -23,14 +23,14 @@ const registerCustomerMaybeNavigateToList = (customer, failCallback) => (dispatc
     .then(() => {
         const {registrationSucceeded} = getState().customerRegisterReducer;
 
-        if (registrationSucceeded) {
-            dispatch(push('/'));
-        } else {
+        if (!registrationSucceeded) {
             failCallback();
+            return;
         }
+        dispatch(push('/'));
     });
 
 
 export const actions = {
-    registerCustomerMaybeNavigateToList: registerCustomerMaybeNavigateToList,
+    registerCustomerMaybeNavigateToList: registerCustomerMaybeNavigateToList
 };

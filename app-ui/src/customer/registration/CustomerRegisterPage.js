@@ -2,6 +2,7 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actions} from "./customer-registration-actions";
+import {Link} from "react-router";
 import {Form, Input, notification, Button, Spin} from 'antd';
 const FormItem = Form.Item;
 
@@ -53,6 +54,13 @@ class CustomerRegisterPage extends React.Component {
         return (
             <div>
                 <Spin spinning={registeringCustomer}>
+                    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                        <div>
+                            <Link to="/">
+                                <h2>Back To Customer List</h2>
+                            </Link>
+                        </div>
+                    </div>
                     <div style={{
                         display: 'flex',
                         alignItems: 'center',

@@ -1,0 +1,3 @@
+apis:
+    stripe: "sk_test_"
+    google: "google maps API key"
