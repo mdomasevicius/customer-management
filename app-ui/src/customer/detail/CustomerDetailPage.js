@@ -26,7 +26,7 @@ class CustomerDetailPage extends React.Component {
     }
 
     render() {
-        const {customer} = this.props.customerDetailState;
+        const {customer, fetchingSingleCustomer} = this.props.customerDetailState;
 
         return (
             <div>
@@ -38,7 +38,8 @@ class CustomerDetailPage extends React.Component {
                     </Col>
                 </Row>
                 <CustomerDetailCard
-                    customer={customer}/>
+                    customer={customer}
+                    loading={fetchingSingleCustomer}/>
             </div>
         );
     }
