@@ -15,8 +15,8 @@ You must obtain or have [Strip API secret (API key)](https://stripe.com/) and [g
 You may set them in `app/src/main/resources/applications.yaml` file or through environment variable:
 * `APIS_STRIPE=<your_stripe_sk_secret>`
 * `APIS_GOOGLE=<google_maps_API_key>`
-
-See `docker-compose.yml` to set these for docker.
+* See `docker-compose.yml` to set these for docker.
+* Note: this app was developed on `Windows` environment. Linux users might need to run: `chmod +x gradlew`.
 
 ## Instructions
 
