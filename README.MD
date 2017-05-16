@@ -16,6 +16,8 @@ You may set them in `app/src/main/resources/applications.yaml` file or through e
 * `APIS_STRIPE=<your_stripe_sk_secret>`
 * `APIS_GOOGLE=<google_maps_API_key>`
 
+See `docker-compose.yml` to set these for docker.
+
 ## Instructions
 
 | Command                            | Description                          |
