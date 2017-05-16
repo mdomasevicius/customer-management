@@ -26,9 +26,9 @@ const registerCustomerMaybeNavigateToList = (customer, failCallback) => (dispatc
         )
         .then(
             () => {
-                const {registrationSucceeded, addressValid} = getState().customerRegisterReducer;
+                const {addressValid} = getState().customerRegisterReducer;
 
-                if (registrationSucceeded && addressValid) {
+                if (addressValid) {
                     dispatch(push('/'));
                 }
             },
