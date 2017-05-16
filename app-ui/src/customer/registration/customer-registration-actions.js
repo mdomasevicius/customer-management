@@ -18,18 +18,23 @@ const validateCustomerAddress = (customer) => ({
         promise: axios.post('/api/address-validation', customer)
     }
 });
-const registerCustomerMaybeNavigateToList = (customer, failCallback) => (dispatch, getState) => dispatch(validateCustomerAddress(customer))
-    .then(() => dispatch(registerCustomer(customer)))
-    .then(() => {
-        const {registrationSucceeded} = getState().customerRegisterReducer;
+const registerCustomerMaybeNavigateToList = (customer, failCallback) => (dispatch, getState) => {
+    return dispatch(validateCustomerAddress(customer))
+        .then(
+            () => dispatch(registerCustomer(customer)),
+            () => failCallback('Invalid address.')
+        )
+        .then(
+            () => {
+                const {registrationSucceeded, addressValid} = getState().customerRegisterReducer;
 
-        if (!registrationSucceeded) {
-            failCallback();
-            return;
-        }
-        dispatch(push('/'));
-    });
-
+                if (registrationSucceeded && addressValid) {
+                    dispatch(push('/'));
+                }
+            },
+            () => failCallback('Unable to register customer.')
+        );
+};
 
 export const actions = {
     registerCustomerMaybeNavigateToList: registerCustomerMaybeNavigateToList

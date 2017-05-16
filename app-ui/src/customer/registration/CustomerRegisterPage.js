@@ -24,10 +24,10 @@ class CustomerRegisterPage extends React.Component {
         this.register = this.register.bind(this);
     }
 
-    openErrorNotificationWithIcon() {
+    openErrorNotificationWithIcon(description) {
         notification['error']({
             message: 'Registration Failed',
-            description: 'Unable to register customer.',
+            description: description,
         });
     }
 
