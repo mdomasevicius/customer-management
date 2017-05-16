@@ -1,7 +1,7 @@
 import {types} from './customer-detail-actions';
 const defaultState = {
     fetchingSingleCustomer: false,
-    customer: {},
+    customer: {}
 };
 
 export default function reduce(state = defaultState, action) {

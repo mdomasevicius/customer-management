@@ -2,7 +2,7 @@ import {types} from './customer-registration-actions';
 const defaultState = {
     registeringCustomer: false,
     registrationSucceeded: false,
-    addressValid: false,
+    addressValid: false
 };
 
 export default function reduce(state = defaultState, action) {
