@@ -6,7 +6,7 @@ describe('Reducer::customerDetailReducer', () => {
         return {
             fetchingSingleCustomer: false,
             customer: {}
-        }
+        };
     };
 
     it('should set initial state by default', () => {
