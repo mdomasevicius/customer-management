@@ -1,7 +1,12 @@
 import React, {PropTypes} from "react";
-import {Col, Row, Spin} from "antd";
+import {Spin} from "antd";
+/*eslint-disable no-unused-vars*/
+//noinspection ES6UnusedImports
+import * as style from './CustomerDetailCard.css';
+/*eslint-enable no-unused-vars*/
 
 const propTypes = {
+    loading: PropTypes.bool,
     customer: PropTypes.shape({
         fullName: PropTypes.string,
         email: PropTypes.string,
@@ -24,46 +29,34 @@ class CustomerDetailCard extends React.Component {
         }
 
         return (
-            <div>
-                <Spin spinning={loading}>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>Full Name: </span>
-                            <span>{customer.fullName}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>Email: </span>
-                            <span>{customer.email}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>City: </span>
-                            <span>{customer.city}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>Street: </span>
-                            <span>{customer.street}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>House Number: </span>
-                            <span>{customer.houseNumber}</span>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col offset={8} span={8}>
-                            <span>Zip Code: </span>
-                            <span>{customer.zipCode}</span>
-                        </Col>
-                    </Row>
-                </Spin>
-            </div>
+            <Spin spinning={loading}>
+                <div className="container">
+                    <div className="row">
+                        <span className="label">Full Name: </span>
+                        <span className="info">{customer.fullName}</span>
+                    </div>
+                    <div className="row">
+                        <span className="label">Email: </span>
+                        <span className="info">{customer.email}</span>
+                    </div>
+                    <div className="row">
+                        <span className="label">City: </span>
+                        <span className="info">{customer.city}</span>
+                    </div>
+                    <div className="row">
+                        <span className="label">Street: </span>
+                        <span className="info">{customer.street}</span>
+                    </div>
+                    <div className="row">
+                        <span className="label">House Number: </span>
+                        <span className="info">{customer.houseNumber}</span>
+                    </div>
+                    <div className="row">
+                        <span className="label">Zip Code: </span>
+                        <span className="info">{customer.zipCode}</span>
+                    </div>
+                </div>
+            </Spin>
         );
     }
 }

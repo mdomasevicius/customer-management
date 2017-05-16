@@ -36,11 +36,7 @@ class CustomerList extends React.Component {
                 key: customer.id,
                 id: customer.id,
                 fullName: customer.fullName,
-                email: customer.email,
-                city: customer.city,
-                street: customer.street,
-                houseNumber: customer.houseNumber,
-                zipCode: customer.zipCode
+                email: customer.email
             };
         });
 
@@ -52,27 +48,12 @@ class CustomerList extends React.Component {
             title: 'Email',
             dataIndex: 'email',
             key: 'email'
-        }, {
-            title: 'City',
-            dataIndex: 'city',
-            key: 'city'
-        }, {
-            title: 'Street',
-            dataIndex: 'street',
-            key: 'street'
-        }, {
-            title: 'House Number',
-            dataIndex: 'houseNumber',
-            key: 'houseNumber'
-        }, {
-            title: 'Zip Code',
-            dataIndex: 'zipCode',
-            key: 'zipCode'
         }];
 
         return (
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                <div style={{border: 'solid 1px grey', width: '85%', marginTop: '5px'}}>
+                <div style={{border: 'solid 1px grey', width: '50%', marginTop: '5px'}}>
+                    {/*Let's pretend this table is a `LIST`*/}
                     <Table
                         loading={loading}
                         dataSource={mappedCustomer}

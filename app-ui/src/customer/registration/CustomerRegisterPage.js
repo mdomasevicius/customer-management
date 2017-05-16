@@ -66,9 +66,9 @@ class CustomerRegisterPage extends React.Component {
                         alignItems: 'center',
                         justifyContent: 'center'
                     }}>
-                        <div style={{width: '70%', marginTop: '10px'}}>
+                        <div style={{width: '50%', marginTop: '10px'}}>
                             <Form onSubmit={this.register}>
-                                <FormItem>
+                                <FormItem label="Full Name">
                                     {getFieldDecorator('fullName', {
                                         rules: [
                                             {required: true, message: 'Please input your full name!'},
@@ -78,7 +78,7 @@ class CustomerRegisterPage extends React.Component {
                                         <Input placeholder="Full Name"/>
                                     )}
                                 </FormItem>
-                                <FormItem>
+                                <FormItem label="Email">
                                     {getFieldDecorator('email', {
                                         rules: [
                                             {required: true, message: 'Please input your email!'},
@@ -89,7 +89,7 @@ class CustomerRegisterPage extends React.Component {
                                         <Input placeholder="Email"/>
                                     )}
                                 </FormItem>
-                                <FormItem>
+                                <FormItem label="City">
                                     {getFieldDecorator('city', {
                                         rules: [
                                             {required: true, message: 'Please input your city!'},
@@ -99,7 +99,7 @@ class CustomerRegisterPage extends React.Component {
                                         <Input placeholder="City"/>
                                     )}
                                 </FormItem>
-                                <FormItem>
+                                <FormItem label="Street">
                                     {getFieldDecorator('street', {
                                         rules: [
                                             {required: true, message: 'Please input your street!'},
@@ -109,7 +109,7 @@ class CustomerRegisterPage extends React.Component {
                                         <Input placeholder="Street"/>
                                     )}
                                 </FormItem>
-                                <FormItem>
+                                <FormItem label="House Number">
                                     {getFieldDecorator('houseNumber', {
                                         rules: [
                                             {required: true, message: 'Please input your house number!'},
@@ -119,7 +119,7 @@ class CustomerRegisterPage extends React.Component {
                                         <Input placeholder="House number"/>
                                     )}
                                 </FormItem>
-                                <FormItem>
+                                <FormItem label="Zip Code">
                                     {getFieldDecorator('zipCode', {
                                         rules: [
                                             {required: true, message: 'Please input your house zip code!'},

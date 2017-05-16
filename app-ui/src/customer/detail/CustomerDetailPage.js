@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actions} from "./customer-detail-actions";
 import {Link} from "react-router";
-import {Col, Row} from "antd";
 import CustomerDetailCard from "./CustomerDetailCard";
 
 const propTypes = {
@@ -11,7 +10,8 @@ const propTypes = {
         fetchSingleCustomer: PropTypes.func
     }),
     customerDetailState: PropTypes.shape({
-        customer: PropTypes.object
+        customer: PropTypes.object,
+        fetchingSingleCustomer: PropTypes.bool
     }),
     params: PropTypes.shape({
         customerId: PropTypes.string,
@@ -30,13 +30,13 @@ class CustomerDetailPage extends React.Component {
 
         return (
             <div>
-                <Row>
-                    <Col offset={8} span={8}>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div>
                         <Link to="/">
                             <h2>Back to List</h2>
                         </Link>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
                 <CustomerDetailCard
                     customer={customer}
                     loading={fetchingSingleCustomer}/>
