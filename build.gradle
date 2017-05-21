@@ -24,16 +24,22 @@ idea {
     }
 }
 
-def sourceProjects = allprojects.findAll { it.file('src/main/java').exists() }
+def sourceProjects = allprojects.findAll {
+    it.file('src/main/java').exists() || it.file('src/main/groovy').exists()
+}
 configure(sourceProjects) {
     apply plugin: 'java'
 
     apply plugin: 'groovy'
     apply plugin: 'org.springframework.boot'
 
+    sourceSets.main.java.srcDirs = []
+    sourceSets.main.groovy.srcDirs = ['src/main/java', 'src/main/groovy']
+
     dependencies {
         compile 'org.springframework.boot:spring-boot-starter-web:1.5.3.RELEASE'
         compile 'com.stripe:stripe-java:4.7.0'
+        compile 'org.codehaus.groovy:groovy-all:2.4.11'
     }
 
     sourceCompatibility = 1.8
